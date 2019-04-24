@@ -1,0 +1,10 @@
+- name: "Install Docker & Docker Compose"
+  pacman:
+    name: ["docker", "docker-compose"]
+    state: present
+- name: "Enable DockerD"
+  service:
+    name: docker
+    state: started
+    enabled: yes
+
