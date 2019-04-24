@@ -1,0 +1,3 @@
+gotify_host: "push.example.tld"
+nextcloud_host: "cloud.example.tld"
+letsencrypt_email: "some@mail.tld"
