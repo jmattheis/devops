@@ -1,0 +1,13 @@
+- name: "Stop Gotify"
+  docker_container:
+    name: "gotify"
+    state: stopped
+- name: "Upload Gotify Files"
+  synchronize:
+    mode: push
+    src: backups/gotify/
+    dest: "{{ gotify_dir }}"
+- name: "Restart Gotify"
+  include_role:
+    name: gotify
+

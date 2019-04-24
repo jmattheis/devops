@@ -1,0 +1,25 @@
+- name: "Gotify nginx conf"
+  copy:
+    content: |
+      proxy_set_header   Host $http_host;
+      proxy_set_header   Upgrade $http_upgrade;
+      proxy_set_header   Connection "upgrade";
+      proxy_connect_timeout   7m;
+      proxy_send_timeout      7m;
+      proxy_read_timeout      7m;
+    dest: "/var/nginx/vhost.d/{{ gotify_host }}_location"
+- name: "Gotify"
+  docker_container:
+    name: "gotify"
+    image: "gotify/server:2.0.5"
+    state: started
+    restart: true
+    exposed_ports:
+      - "80"
+    env:
+      VIRTUAL_HOST: "{{ gotify_host }}"
+      VIRTUAL_PORT: "80"
+      LETSENCRYPT_HOST: "{{ gotify_host }}"
+      LETSENCRYPT_EMAIL: "{{ letsencrypt_email }}"
+    volumes:
+      - "{{ gotify_dir }}:/app/data/"
