@@ -1,0 +1,16 @@
+- name: "Install basics"
+  pacman:
+    name: ["git", "fail2ban", "vim", "rsync"]
+    state: "present"
+- name: "Copy fail2ban config"
+  copy:
+    src: ../files/fail2ban/jail.local
+    dest: /etc/fail2ban/jail.local
+    owner: root
+    group: root
+    mode: 0644
+- name: "Enable fail2ban"
+  service:
+    name: fail2ban
+    state: restarted
+    enabled: yes
