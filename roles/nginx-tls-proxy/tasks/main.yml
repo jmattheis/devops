@@ -1,0 +1,27 @@
+- name: "nginx-proxy"
+  docker_container:
+    name: "nginx-proxy"
+    image: "jwilder/nginx-proxy:alpine"
+    state: started
+    restart: true
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "{{ nginx_dir }}certs:/etc/nginx/certs"
+      - "{{ nginx_dir }}vhost.d:/etc/nginx/vhost.d"
+      - "{{ nginx_dir }}html:/usr/share/nginx/html"
+      - "/var/run/docker.sock:/tmp/docker.sock:ro"
+- name: "nginx companion"   
+  docker_container:
+    name: "nginx-companion"
+    image: "jrcs/letsencrypt-nginx-proxy-companion:v1.10"
+    state: started
+    restart: true
+    env:
+      NGINX_PROXY_CONTAINER: "nginx-proxy"
+    volumes:
+      - "{{ nginx_dir }}certs:/etc/nginx/certs"
+      - "{{ nginx_dir }}vhost.d:/etc/nginx/vhost.d"
+      - "{{ nginx_dir }}html:/usr/share/nginx/html"
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
