@@ -1,0 +1,23 @@
+- name: "nextcloud"
+  docker_container:
+    name: "nextcloud"
+    image: "nextcloud:15.0.7-apache"
+    state: started
+    restart: true
+    env:
+      VIRTUAL_HOST: "{{ nextcloud_host }}"
+      VIRTUAL_PORT: "80"
+      LETSENCRYPT_HOST: "{{ nextcloud_host }}"
+      LETSENCRYPT_EMAIL: "{{ letsencrypt_email }}"
+    volumes:
+      - "{{ nextcloud_dir }}data:/var/www/html/data/"
+      - "{{ nextcloud_dir }}custom_apps:/var/www/html/custom_apps/"
+      - "{{ nextcloud_dir }}config:/var/www/html/config/"
+- name: "Install crontab"
+  pacman: pkg=cronie state=present
+- name: "Cron"
+  cron:
+    name: "Nextcloud Cron"
+    state: present
+    minute: "*/5"
+    job: "docker exec --user www-data nextcloud php /var/www/html/cron.php"

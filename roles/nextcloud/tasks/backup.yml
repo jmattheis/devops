@@ -1,0 +1,13 @@
+- name: "Stop Nextcloud"
+  docker_container:
+    name: "nextcloud"
+    state: stopped
+- name: "Download Nextcloud Files"
+  synchronize:
+    mode: pull
+    src: "{{ nextcloud_dir }}"
+    dest: backups/nextcloud/
+- name: "Restart Nextcloud"
+  include_role:
+    name: nextcloud
+
