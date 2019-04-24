@@ -1,0 +1,4 @@
+backups/
+hosts
+*.retry
+host_vars/*.yml
