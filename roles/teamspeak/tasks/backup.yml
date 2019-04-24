@@ -1,0 +1,22 @@
+- name: "Stop TS3"
+  docker_container:
+    name: "teamspeak"
+    state: stopped
+- name: "Stop Music Bot"
+  docker_container:
+    name: "sinusbot"
+    state: stopped
+- name: "Download TS3 Files"
+  synchronize:
+    mode: pull
+    src: "{{ teamspeak_dir }}"
+    dest: backups/teamspeak/
+- name: "Download Sinus Files"
+  synchronize:
+    mode: pull
+    src: "{{ sinusbot_dir }}"
+    dest: backups/sinusbot/
+- name: "Restart All"
+  include_role:
+    name: teamspeak
+

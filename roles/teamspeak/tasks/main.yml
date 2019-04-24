@@ -1,0 +1,36 @@
+- name: "Docker Network"
+  docker_network:
+    name: tsnet
+- name: "TS3 Container"
+  docker_container:
+    name: "teamspeak"
+    image: "teamspeak:3.7.1"
+    state: started
+    ports:
+      - 9987:9987/udp
+      - 10011:10011
+      - 30033:30033
+    env:
+      TS3SERVER_LICENSE: accept
+    volumes:
+      - "{{ teamspeak_dir }}:/var/ts3server/"
+    restart: true
+    networks:
+      - name: tsnet
+        aliases:
+          - teamspeak.docker.local
+- name: "Music Bot"
+  docker_container:
+    name: "sinusbot"
+    image: "sinusbot/docker"
+    state: started
+    restart: true
+    ports:
+      - 8087:8087
+    env:
+      OVERRIDE_PASSWORD: "secured"
+    volumes:
+      - "{{ sinusbot_dir }}scripts:/opt/sinusbot/scripts"
+      - "{{ sinusbot_dir }}data:/opt/sinusbot/data"
+    networks:
+      - name: tsnet
