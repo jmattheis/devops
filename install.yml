@@ -2,16 +2,17 @@
   become: true
   roles:
     - common
-    - docker
 
 - hosts: teamspeak
   become: true
   roles:
+    - docker
     - teamspeak
 
 - hosts: cloud
   become: true
   roles:
+    - docker
     - nextcloud
     - gotify
     - nginx-tls-proxy

@@ -1,0 +1,10 @@
+- hosts: teamspeak
+  become: true
+  tasks:
+    - include_role: name=teamspeak tasks_from=apply-backup
+
+- hosts: cloud
+  become: true
+  tasks:
+    - include_role: name=nextcloud tasks_from="apply-backup"
+    - include_role: name=gotify tasks_from="apply-backup"
