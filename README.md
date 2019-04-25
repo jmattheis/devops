@@ -38,6 +38,7 @@ $ ansible-playbook apply-backup.yml
 | Role                                     | Description                                              |
 | ---------------------------------------- | -------------------------------------------------------- |
 | [common](roles/common)                   | Installs and configures packages like fail2ban, vim, etc |
+| [ansible](roles/ansible)                 | Installs ansible                                         |
 | [docker](roles/docker)                   | Starts Docker                                            |
 | [teamspeak](roles/teamspeak)             | Starts a ts3server and sinusbot                          |
 | [gotify](roles/gotify)                   | Starts [gotify/server](https://gotify.net)               |

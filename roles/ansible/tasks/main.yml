@@ -1,0 +1,3 @@
+- name: "Install Ansible"
+  pacman:
+    name: "ansible"
