@@ -5,7 +5,7 @@
 - name: "Upload Gotify Files"
   synchronize:
     mode: push
-    src: backups/gotify/
+    src: "{{ backup_dir}}/gotify/"
     dest: "{{ gotify_dir }}"
 - name: "Restart Gotify"
   include_role:

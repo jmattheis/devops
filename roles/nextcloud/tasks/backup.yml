@@ -6,7 +6,7 @@
   synchronize:
     mode: pull
     src: "{{ nextcloud_dir }}"
-    dest: backups/nextcloud/
+    dest: "{{ backup_dir }}/nextcloud/"
 - name: "Restart Nextcloud"
   include_role:
     name: nextcloud

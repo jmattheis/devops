@@ -5,7 +5,7 @@
 - name: "Upload Nextcloud Files"
   synchronize:
     mode: push
-    src: backups/nextcloud/
+    src: "{{ backup_dir }}/nextcloud/"
     dest: "{{ nextcloud_dir }}"
 - name: "Fix file perm"
   file:

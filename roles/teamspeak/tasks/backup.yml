@@ -10,12 +10,12 @@
   synchronize:
     mode: pull
     src: "{{ teamspeak_dir }}"
-    dest: backups/teamspeak/
+    dest: "{{ backup_dir }}/teamspeak/"
 - name: "Download Sinus Files"
   synchronize:
     mode: pull
     src: "{{ sinusbot_dir }}"
-    dest: backups/sinusbot/
+    dest: "{{ backup_dir }}/sinusbot/"
 - name: "Restart All"
   include_role:
     name: teamspeak

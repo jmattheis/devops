@@ -6,7 +6,7 @@
   synchronize:
     mode: pull
     src: "{{ gotify_dir }}"
-    dest: backups/gotify/
+    dest: "{{ backup_dir }}/gotify/"
 - name: "Restart Gotify"
   include_role:
     name: gotify

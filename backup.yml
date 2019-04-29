@@ -5,6 +5,8 @@
 
 - hosts: cloud
   become: true
+  vars:
+    backup_dir: "backups"
   tasks:
     - include_role: name=nextcloud tasks_from="backup"
     - include_role: name=gotify tasks_from="backup"

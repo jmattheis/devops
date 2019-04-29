@@ -9,12 +9,12 @@
 - name: "Upload TS3 Files"
   synchronize:
     mode: push
-    src: backups/teamspeak/
+    src: "{{ backup_dir }}/teamspeak/"
     dest: "{{ teamspeak_dir }}"
 - name: "Upload Sinus Files"
   synchronize:
     mode: push
-    src: backups/sinusbot/
+    src: "{{ backup_dir }}/sinusbot/"
     dest: "{{ sinusbot_dir }}"
 - name: "Restart All"
   include_role:
