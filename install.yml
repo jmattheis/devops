@@ -15,4 +15,5 @@
     - docker
     - nextcloud
     - gotify
+    - traggo
     - nginx-tls-proxy

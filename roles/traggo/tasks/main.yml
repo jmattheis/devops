@@ -1,0 +1,15 @@
+- name: "traggo"
+  docker_container:
+    name: "traggo"
+    image: "traggo/server:test-build-1"
+    state: started
+    restart: true
+    exposed_ports:
+      - "3030"
+    env:
+      VIRTUAL_HOST: "{{ traggo_host }}"
+      VIRTUAL_PORT: "3030"
+      LETSENCRYPT_HOST: "{{ traggo_host }}"
+      LETSENCRYPT_EMAIL: "{{ letsencrypt_email }}"
+    volumes:
+      - "{{ traggo_dir }}:/app/data/"

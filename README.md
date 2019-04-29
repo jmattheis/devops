@@ -42,5 +42,6 @@ $ ansible-playbook apply-backup.yml
 | [docker](roles/docker)                   | Starts Docker                                            |
 | [teamspeak](roles/teamspeak)             | Starts a ts3server and sinusbot                          |
 | [gotify](roles/gotify)                   | Starts [gotify/server](https://gotify.net)               |
+| [traggo](roles/traggo)                   | Starts [traggo/server](https://github.com/traggo/server) |
 | [nextcloud](roles/nextcloud)             | Starts [Nextcloud](https://nextcloud.com/)               |
 | [nginx-tls-proxy](roles/nginx-tls-proxy) | Starts a nginx proxy and a companion for tls             |

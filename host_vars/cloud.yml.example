@@ -1,6 +1,8 @@
 gotify_dir: "/var/gotify/"
 nextcloud_dir: "/var/nextcloud/"
 nginx_dir: "/var/nginx/"
+traggo_dir: "/var/traggo/"
 gotify_host: "push.example.tld"
+traggo_host: "traggo.example.tld"
 nextcloud_host: "cloud.example.tld"
 letsencrypt_email: "some@mail.tld"
