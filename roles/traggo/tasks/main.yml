@@ -1,7 +1,7 @@
 - name: "traggo"
   docker_container:
     name: "traggo"
-    image: "traggo/server:test-build-1"
+    image: "traggo/server:0.0.2"
     state: started
     restart: true
     exposed_ports:
@@ -12,4 +12,4 @@
       LETSENCRYPT_HOST: "{{ traggo_host }}"
       LETSENCRYPT_EMAIL: "{{ letsencrypt_email }}"
     volumes:
-      - "{{ traggo_dir }}:/app/data/"
+      - "{{ traggo_dir }}:/opt/traggo/data"
