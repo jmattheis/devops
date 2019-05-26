@@ -1,0 +1,28 @@
+- name: "ttrss network"
+  docker_network:
+    name: ttrss_network
+- name: "start db"
+  docker_container:
+    name: "ttrss_db"
+    image: "mariadb:10.4.5"
+    state: started
+    restart: yes
+    env:
+      MYSQL_ROOT_PASSWORD: "oopsie"
+      MYSQL_USER: "root"
+      MYSQL_DATABASE: "ttrss"
+    networks:
+      - name: ttrss_network
+- name: "start ttrss"
+  docker_container:
+    name: "ttrss"
+    image: "linuxserver/tt-rss:19.2-ls17"
+    state: started
+    restart: yes
+    networks:
+      - name: ttrss_network
+    env:
+      VIRTUAL_HOST: "{{ ttrss_host }}"
+      VIRTUAL_PORT: "80"
+      LETSENCRYPT_HOST: "{{ ttrss_host }}"
+      LETSENCRYPT_EMAIL: "{{ letsencrypt_email }}"

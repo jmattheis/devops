@@ -1,7 +1,7 @@
 - hosts: all
   become: true
   roles:
-    - common
+    - { role: common, tags: common }
 
 - hosts: teamspeak
   become: true
@@ -16,4 +16,5 @@
     - nextcloud
     - gotify
     - traggo
-    - nginx-tls-proxy
+    - { role: ttrss, tags: ttrss }
+    - { role: nginx-tls-proxy, tags: tls }
