@@ -7,6 +7,8 @@
     image: "mariadb:10.4.5"
     state: started
     restart: yes
+    volumes:
+      - "{{ ttrss_dir }}/db/:/var/lib/mysql/"
     env:
       MYSQL_ROOT_PASSWORD: "oopsie"
       MYSQL_USER: "root"
@@ -21,6 +23,8 @@
     restart: yes
     networks:
       - name: ttrss_network
+    volumes:
+      - "{{ ttrss_dir }}/config/:/config/"
     env:
       VIRTUAL_HOST: "{{ ttrss_host }}"
       VIRTUAL_PORT: "80"
