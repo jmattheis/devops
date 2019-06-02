@@ -4,15 +4,16 @@
 - name: "start db"
   docker_container:
     name: "ttrss_db"
-    image: "mariadb:10.4.5"
+    image: "postgres:11.3-alpine"
     state: started
     restart: yes
     volumes:
-      - "{{ ttrss_dir }}/db/:/var/lib/mysql/"
+      - "{{ ttrss_dir }}/db/:/var/lib/postgresql/data"
     env:
-      MYSQL_ROOT_PASSWORD: "oopsie"
-      MYSQL_USER: "root"
-      MYSQL_DATABASE: "ttrss"
+      POSTGRES_PASSWORD: "oopsie"
+      POSTGRES_USER: "root"
+      POSTGRES_DB: "ttrss"
+      PGDATA: "/var/lib/postgresql/data/pgdata"
     networks:
       - name: ttrss_network
 - name: "start ttrss"
