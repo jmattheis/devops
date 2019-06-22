@@ -2,19 +2,21 @@
   become: true
   roles:
     - { role: common, tags: common }
+    - { role: sysupdate, tags: [never, sysupdate] }
 
 - hosts: teamspeak
   become: true
   roles:
-    - docker
-    - teamspeak
+    - { role: docker, tags: deploy }
+    - { role: teamspeak, tags: deploy }
 
 - hosts: cloud
   become: true
   roles:
     - docker
-    - nextcloud
-    - gotify
-    - traggo
-    - { role: ttrss, tags: ttrss }
-    - { role: nginx-tls-proxy, tags: tls }
+    - { role: nextcloud, tags: deploy }
+    - { role: gotify, tags: deploy }
+    - { role: traggo, tags: [deploy, traggo] }
+    - { role: ttrss, tags: [deploy, ttrss] }
+    - { role: nginx-tls-proxy, tags: [deploy, tls] }
+    - { role: traggo-dev, tags: [deploy, traggo_dev] }
