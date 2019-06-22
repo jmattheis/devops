@@ -13,7 +13,7 @@
 - hosts: cloud
   become: true
   roles:
-    - docker
+    - { role: docker, tags: deploy }
     - { role: nextcloud, tags: deploy }
     - { role: gotify, tags: deploy }
     - { role: traggo, tags: [deploy, traggo] }
