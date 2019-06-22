@@ -46,3 +46,4 @@ $ ansible-playbook apply-backup.yml
 | [ttrss](roles/ttrss)                     | Starts tiny tiny rss                                     |
 | [nextcloud](roles/nextcloud)             | Starts [Nextcloud](https://nextcloud.com/)               |
 | [nginx-tls-proxy](roles/nginx-tls-proxy) | Starts a nginx proxy and a companion for tls             |
+| [sysupdate](roles/sysupdate)             | Does a sysupdate and reboots                             |
