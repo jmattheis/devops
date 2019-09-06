@@ -16,7 +16,7 @@
 - name: "nextcloud"
   docker_container:
     name: "nextcloud"
-    image: "nextcloud:16.0.3-apache"
+    image: "nextcloud:16.0.4-apache"
     state: started
     restart: true
     env:
