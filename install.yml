@@ -21,4 +21,3 @@
     - { role: traggo, tags: [deploy, traggo] }
     - { role: ttrss, tags: [deploy, ttrss] }
     - { role: nginx-tls-proxy, tags: [deploy, tls] }
-    - { role: traggo-dev, tags: [deploy, traggo_dev] }
