@@ -11,7 +11,7 @@
 - name: "Gotify"
   docker_container:
     name: "gotify"
-    image: "gotify/server:2.0.5"
+    image: "gotify/server:2.0.8"
     state: started
     restart: true
     exposed_ports:
