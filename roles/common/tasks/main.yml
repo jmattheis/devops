@@ -1,6 +1,6 @@
 - name: "Install basics"
   pacman:
-    name: ["git", "fail2ban", "vim", "rsync"]
+    name: ["git", "fail2ban", "vim", "rsync", "cronie"]
     state: "present"
 - name: "Copy fail2ban config"
   copy:
@@ -12,5 +12,10 @@
 - name: "Enable fail2ban"
   service:
     name: fail2ban
+    state: restarted
+    enabled: yes
+- name: "Enable cronie"
+  service:
+    name: cronie
     state: restarted
     enabled: yes

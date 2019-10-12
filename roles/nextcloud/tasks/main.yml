@@ -28,8 +28,6 @@
       - "{{ nextcloud_dir }}data:/var/www/html/data/"
       - "{{ nextcloud_dir }}custom_apps:/var/www/html/custom_apps/"
       - "{{ nextcloud_dir }}config:/var/www/html/config/"
-- name: "Install crontab"
-  pacman: pkg=cronie state=present
 - name: "Cron"
   cron:
     name: "Nextcloud Cron"
