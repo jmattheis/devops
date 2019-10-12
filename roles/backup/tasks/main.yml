@@ -1,0 +1,63 @@
+- name: "Sync {{ backup.ansible_repo }}"
+  synchronize:
+    mode: push
+    src: "../../../"
+    recursive: true
+    archive: true
+    dest: "{{ backup.ansible_repo }}"
+- name: "chown -R {{ ansible_user }} {{ backup.ansible_repo }}"
+  become: true
+  file:
+    recurse: true
+    state: directory
+    path: "{{ backup.ansible_repo }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+- name: "Install restic"
+  pacman: pkg=restic state=present
+- name: "Create {{ backup.dot_env }}"
+  copy:
+    content: |
+      export RESTIC_REPOSITORY="gs:{{ backup.gcloud.storage.bucket }}:/"
+      export RESTIC_PASSWORD="{{ backup.password }}"
+      export GOOGLE_PROJECT_ID="{{ backup.gcloud.project.id }}"
+      export GOOGLE_APPLICATION_CREDENTIALS="{{ ansible_env.HOME }}/gcloud-auth.json"
+    dest: "{{ backup.dot_env }}"
+
+- name: "Create {{ backup.backup_sh }}"
+  copy:
+    content: |
+      #!/bin/bash
+      set -e
+
+      source {{ backup.dot_env }}
+
+      /usr/bin/restic init || true
+      /usr/bin/restic check --read-data
+
+      /usr/bin/ansible-playbook -i {{ backup.ansible_repo }}hosts {{ backup.ansible_repo }}backup.yml -e "backup_dir={{ backup.data_dir }}" -l $1
+
+      /usr/bin/restic backup --tag ansible {{ backup.data_dir }}
+      /usr/bin/restic forget --keep-daily 4 --keep-weekly 4 --keep-monthly 12 --keep-yearly 5 --compact --prune
+    dest: "{{ backup.backup_sh }}"
+- name: "chmod u+x {{ backup.backup_sh }}" 
+  file:
+    mode: 0700
+    state: file
+    path: "{{ backup.backup_sh }}"
+- name: "Cron: TUE-SUN: cloud"
+  cron:
+    name: "other-backup"
+    state: present
+    minute: "0"
+    hour: "4"
+    weekday: "2-7"
+    job: "{{ backup.backup_sh }} cloud"
+- name: "Cron: Monday: teamspeak,cloud"
+  cron:
+    name: "monday-backup"
+    state: present
+    minute: "0"
+    hour: "6"
+    weekday: "MON"
+    job: "{{ backup.backup_sh }} teamspeak,cloud"

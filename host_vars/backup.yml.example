@@ -1,0 +1,11 @@
+backup:
+  ansible_repo: "{{ ansible_env.HOME }}/backup/"
+  data_dir: "{{ ansible_env.HOME }}/data/"
+  dot_env: "{{ ansible_env.HOME }}/.resticenv"
+  backup_sh: "{{ ansible_env.HOME }}/doBackup.sh"
+  password: "resticpw"
+  gcloud:
+    storage:
+      bucket: "mybucket"
+    project:
+      id: "1234567890"

@@ -48,3 +48,4 @@ $ ansible-playbook apply-backup.yml
 | [nginx-tls-proxy](roles/nginx-tls-proxy) | Starts a nginx proxy and a companion for tls             |
 | [sysupdate](roles/sysupdate)             | Does a sysupdate and reboots                             |
 | [authorized_keys](roles/authorized_keys) | Adds authorized_keys to a user                           |
+| [backup](roles/backup)                   | Initializes daily backups                                |

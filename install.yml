@@ -21,3 +21,14 @@
     - { role: traggo, tags: [deploy, traggo] }
     - { role: ttrss, tags: [deploy, ttrss] }
     - { role: nginx-tls-proxy, tags: [deploy, tls] }
+
+- hosts: backup
+  become: true
+  roles:
+    - ansible
+
+- hosts: backup
+  become: true
+  become_user: backup
+  roles:
+    - { role: backup, tags: [deploy] }

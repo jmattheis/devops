@@ -1,2 +1,3 @@
 teamspeak ansible_port=22 ansible_host=127.0.0.1 ansible_user=user1
 cloud     ansible_port=22 ansible_host=127.0.0.1 ansible_user=user1
+backup    ansible_port=22 ansible_host=127.0.0.1 ansible_user=user1
