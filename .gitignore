@@ -2,3 +2,4 @@ backups/
 hosts
 *.retry
 host_vars/*.yml
+group_vars/*.yml

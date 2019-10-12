@@ -1,0 +1,5 @@
+- name: "Add authorized keys {{ user }}"
+  authorized_key:
+    user: "{{ user }}"
+    key: "{{ authorized_keys }}"
+    state: present

@@ -1,0 +1,3 @@
+authorized_keys: |
+  ssh-ed25519 some-key user@system 
+  ssh-ed25519 some-key user@system 

@@ -1,6 +1,8 @@
 - hosts: all
   become: true
+  gather_facts: false
   roles:
+    - { role: authorized_keys, user: '{{ ansible_user }}', tags: [ssh] }
     - { role: common, tags: common }
     - { role: sysupdate, tags: [never, sysupdate] }
 
