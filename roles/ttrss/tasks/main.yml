@@ -19,7 +19,7 @@
 - name: "start ttrss"
   docker_container:
     name: "ttrss"
-    image: "linuxserver/tt-rss:19.8-ls28"
+    image: "linuxserver/tt-rss:19.8-ls31"
     state: started
     restart: yes
     networks:
