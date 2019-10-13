@@ -1,7 +1,7 @@
 - name: "traggo"
   docker_container:
     name: "traggo"
-    image: "traggo/server:0.0.4"
+    image: "traggo/server:0.0.7"
     state: started
     restart: true
     exposed_ports:
