@@ -4,7 +4,7 @@
 - name: "TS3 Container"
   docker_container:
     name: "teamspeak"
-    image: "teamspeak:3.9.1"
+    image: "teamspeak:3.11.0"
     state: started
     ports:
       - 9987:9987/udp
@@ -20,9 +20,10 @@
         aliases:
           - teamspeak.docker.local
 - name: "Music Bot"
+  tags: sinusbot
   docker_container:
     name: "sinusbot"
-    image: "sinusbot/docker"
+    image: "sinusbot/docker:1.0.0-beta.10-202ee4d"
     state: started
     restart: true
     ports:
