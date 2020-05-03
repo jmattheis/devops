@@ -4,7 +4,7 @@
 - name: "TS3 Container"
   docker_container:
     name: "teamspeak"
-    image: "teamspeak:3.11.0"
+    image: "teamspeak:3.12.1"
     state: started
     ports:
       - 9987:9987/udp
